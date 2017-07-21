@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="vertical"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/linearLayout1"
+    p1:keepScreenOn="true">
+    <TextView
+        p1:text="Not connected"
+        p1:textAppearance="?android:attr/textAppearanceMedium"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/status" />
+    <ImageView
+        p1:src="@android:drawable/ic_menu_gallery"
+        p1:layout_width="match_parent"
+        p1:layout_height="350.7dp"
+        p1:id="@+id/imageView1" />
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:layout_width="match_parent"
+        p1:layout_height="match_parent"
+        p1:id="@+id/linearLayout2"
+        p1:layout_marginTop="0.0dp">
+        <Button
+            p1:text="Previous"
+            p1:layout_width="172.0dp"
+            p1:layout_height="match_parent"
+            p1:id="@+id/btn_previous" />
+        <Button
+            p1:text="Next"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
+            p1:id="@+id/btn_next" />
+    </LinearLayout>
+</LinearLayout>
