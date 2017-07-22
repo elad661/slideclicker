@@ -8,6 +8,10 @@ It uses uinput to simulate pageUp / pageDown key presses, so it works with any s
 The server side (which you need to run on your laptop) is written in Python, and the Android app is
 written in C# using Xamarin (yes, that means you'll need Windows or Mac OS to compile the code. Sorry.)
 
+**Please note**: you should only use this app if there's *literally* no other clicker you can use. If you use Libreoffice Impress, for example,
+then "LibreOffice Impress Remote" is probably a better choice. If you have a USB based clicker that works - use it instead, it'll be
+more reilable. I take no responsibility for anything going wrong with your talk / presentation because of a bug in slideclicker.
+
 Requirements
 ------------
 
@@ -30,7 +34,7 @@ slideclicker communicates with your phone over bluetooth, but since bluetooth is
 
 If your phone and your laptop are on the same wifi network, slideclicker can use wifi for the screenshots, and then the quality
 will be a little bit better. It'll still use bluetooth for the pageUp / pageDown key presses, and negotiate an "upgrade" to wifi and HTTP
-for the screenshots - the phone will send the SSID its' connected to to the laptop, and if the laptop sees they're on the same SSID,
+for the screenshots - the phone will send the SSID it's connected to to the laptop, and if the laptop sees they're on the same SSID,
 it'll start a new HTTP server on a random port and listen to screenshot requests from the phone. Requests will be signed using hmac
 and a randomally generated key (that is generated on the laptop and sent over to the phone over bluetooth first), so it should be
 reasonablly safe.
