@@ -50,13 +50,12 @@ class Watcher(IOWatcher):
             self.stop()
 
     def send_screenshot(self, fd, hq=False):
-        with take_screenshot(superlowres=not hq) as f:
-            as_bytes = f.read()
-            padded_len = str(len(as_bytes)).zfill(8)
-            msg = 'pic:%s' % padded_len
-            os.write(fd, msg.encode())
-            os.write(fd, as_bytes)
-            logger.debug("sent screenshot, %s bytes, hq=%s" % (f.tell(), hq))
+        f = take_screenshot(superlowres=not hq)
+        padded_len = str(len(f[0])).zfill(8)
+        msg = 'pic:%s' % padded_len
+        os.write(fd, msg.encode())
+        os.write(fd, f[0])
+        logger.debug("sent screenshot, %s bytes, hq=%s" % (len(f[0]), hq))
 
     def send_str(self, fd, s):
         os.write(fd, s.decode())

@@ -39,12 +39,13 @@ import socket
 import time
 from datetime import datetime
 from threading import Thread
-from .screenshot import take_screenshot, bytesIO_len
+from .screenshot import take_screenshot
 from http.server import HTTPServer, BaseHTTPRequestHandler
 gi.require_version('NM', '1.0')
 from gi.repository import NM
 
 logger = logging.getLogger("wifi")
+
 
 def get_ssid(connection):
     """ Get the SSID for a libnm connection """
@@ -187,12 +188,12 @@ def request_handler_factory(hmac_key):
             # sleep because sometimes the client is too fast
             # and asks for screenshots before slides had time to change
             time.sleep(0.3)
-            with take_screenshot() as f:
-                self.send_response(200)
-                self.send_header("Content-Type", f.content_type)
-                self.send_header("Content-Length", bytesIO_len(f))
-                self.end_headers()
-                self.wfile.write(f.read())
+            f = take_screenshot()
+            self.send_response(200)
+            self.send_header("Content-Type", f[1])
+            self.send_header("Content-Length", len(f[0]))
+            self.end_headers()
+            self.wfile.write(f[0])
 
     return RequestHandler
 
