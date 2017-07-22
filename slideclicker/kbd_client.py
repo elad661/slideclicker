@@ -20,8 +20,11 @@
 
 import socket
 import os
+import logging
 from time import sleep
 SOCKET_PATH = '/run/slideclicker_socket'
+
+logger = logging.getLogger("kbd_client")
 
 
 class KeyboardClient(object):
@@ -34,7 +37,7 @@ class KeyboardClient(object):
     def _send(self, what):
         if what != b"up" and what != b"dn":
             raise Exception("Invalid command")
-        print(what)
+        logger.info("sending pg%s" % what.decode())
         self.socket.sendall(what)
 
     def pageup(self):
